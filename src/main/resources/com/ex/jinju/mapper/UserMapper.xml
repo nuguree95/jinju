@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ex.jinju.mapper.UserMapper">
+<insert id="addUser" parameterType="com.ex.jinju.dto.AddDTO">
+	INSERT INTO USER_INFO(
+		USER_NUMBER
+		,ID
+		,PASSWORD
+		,NAME
+		,EMAIL
+	) VALUES(
+		SEQ_USER_NUMBER.NEXTVAL
+		,#{id}
+		,#{password}
+		,#{name}
+		,#{email}
+	)
+</insert>
+<delete id="deleteUser" parameterType="com.ex.jinju.dto.req.LoginDTO">
+	DELETE FROM USER_INFO
+	WHERE ID = #{id}
+	AND PASSWORD = #{password}
+
+</delete>
+<update id="updateUser" parameterType="com.ex.jinju.dto.res.UserInfoDTO">
+		UPDATE USER_INFO SET
+PASSWORD = #{password}
+,NAME = #{name}
+,EMAIL = #{email}
+WHERE ID = #{id}
+
+</update>
+</mapper>
