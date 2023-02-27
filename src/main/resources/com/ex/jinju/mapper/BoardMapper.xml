@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ex.jinju.mapper.BoardMapper">
+<insert id="addBoard" parameterType="com.ex.jinju.dto.BoardDTO">
+	INSERT INTO BOARD(
+		BOARD_NUMBER 
+		,TITLE
+		,CONTENT
+		,WRITER
+		,"DATE" 
+		,READ_COUNT 
+	) VALUES(
+		BOARD_NUMBER_SEQ.NEXTVAL
+		,#{title}
+		,#{content}
+		,#{writer}
+		,SYSDATE
+		,0
+	)
+</insert>
+<select id="selectBoard" parameterType="com.ex.jinju.dto.BoardDTO">
+SELECT
+		B.BOARD_NUMBER
+		, B.TITLE
+		, B.CONTENT
+		, U.ID			AS USER_NAME
+		, TO_CHAR(B.CREATED_DATE, 'YYYY-MM-DD hh24:mm:ss') AS CREATED_DATE
+		, B.READ_COUNT
+		, U.USER_NUMBER
+	FROM
+		BOARD		B
+		, USER_INFO		U
+	WHERE
+		B.USER_NUMBER = U.USER_NUMBER
+	<if test="board_number != null and board_number != ''">
+		B.BOARD_NUMBER = #{board_number}
+	</if>
+	ORDER BY
+		B.CREATED_DATE DESC
+</select>
+
+</mapper>

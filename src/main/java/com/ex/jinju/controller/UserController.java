@@ -70,7 +70,7 @@ public class UserController {
 		int i = userService.updateUser(dto);
 		
 		if (i > 0) {
-			req.setAttribute("userInfo", dto);
+			req.getSession().setAttribute("userInfo", dto);
 			mav.setViewName("redirect:/main");
 		} else {
 			log.info("실패함");

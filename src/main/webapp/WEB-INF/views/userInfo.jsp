@@ -25,7 +25,8 @@ EMAIL = ${userInfo.email }<br>
 
 
 <form action="/user/update" method = "post">
-ID = <input type="text" name="id" value="${userInfo.id }"><br>
+ID<br> 
+<input type="text" name="id" value="${userInfo.id }" readonly><br>
 PASSWORD <br>
 <input type="password" name="password"><br>
 NAME<br>
