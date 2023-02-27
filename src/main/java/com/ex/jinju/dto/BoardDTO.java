@@ -18,5 +18,5 @@ public class BoardDTO {
 	private Date date;
 	
 	private Long read_count;
-
+ 
 }
